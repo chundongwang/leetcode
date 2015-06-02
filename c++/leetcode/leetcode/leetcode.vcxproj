@@ -79,6 +79,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddTwoNumbers.cpp" />
     <ClCompile Include="leetcode.cpp" />
     <ClCompile Include="twosum.cpp" />
   </ItemGroup>
