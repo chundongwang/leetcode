@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <unordered_map>
 
 using namespace std;
 
@@ -20,7 +21,54 @@ namespace twosum {
     class Solution {
     public:
         vector<int> twoSum(vector<int>& nums, int target) {
-            return nums;
+            // target-nums[i] -> i
+            unordered_map<int, vector<int>> reverse;
+            // scan: O(n)
+            for (int i = 0; i < nums.size(); i++)
+            {
+                int v = nums[i];
+                auto p = reverse.find(v);
+                if (p == reverse.end())
+                {
+                    pair<int, vector<int>> e;
+                    e.first = v;
+                    e.second.push_back(i);
+                    reverse.insert(e);
+                }
+                else 
+                {
+                    p->second.push_back(i);
+                }
+            }
+            // search: O(n)
+            vector<int> result;
+            for (int i = 0; i < nums.size(); i++)
+            {
+                int v = nums[i];
+                auto p = reverse.find(target - v);
+                if (p != reverse.end())
+                {
+                    for (auto l = p->second.begin(); l != p->second.end(); l++)
+                    {
+                        if (*l != i)
+                        {
+                            if (i < *l)
+                            {
+                                result.push_back(i + 1);
+                                result.push_back(*l + 1);
+                                break;
+                            }
+                            else if (*l > i)
+                            {
+                                result.push_back(*l + 1);
+                                result.push_back(i + 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
         }
         static void test() {
             vector<int> input({ 2, 7, 11, 15 });
