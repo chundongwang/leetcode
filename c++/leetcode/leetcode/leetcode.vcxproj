@@ -81,6 +81,7 @@
   <ItemGroup>
     <ClCompile Include="AddTwoNumbers.cpp" />
     <ClCompile Include="leetcode.cpp" />
+    <ClCompile Include="LongestSubstring.cpp" />
     <ClCompile Include="twosum.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
